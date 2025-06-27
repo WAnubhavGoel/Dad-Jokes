@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="center">
+        <h1>JOKES</h1>
+        <section class="joke-out"></section>
+        <div class="container">
+            <button class="fetchJoke">Another Joke</button>
+        </div>
+    </div>
+    <script>
+        apiBody=document.querySelector(".joke-out");
+        const apiurl="https://icanhazdadjoke.com/";
+        const fetchdata=()=>{
+            fetch(apiurl,{headers: {
+                Accept:"application/json"
+            }})
+            .then((res)=>{
+                return res.json();
+            })
+            .then((data)=>{
+                console.log(data.joke);
+                apiBody.innerHTML=data.joke;
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        }
+        document.querySelector(".fetchJoke").addEventListener("click",fetchdata)
+    </script>
+</body>
+</html>
